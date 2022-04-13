@@ -1,6 +1,5 @@
 from os import getenv
 
-import discord
 from discord.ext import commands
 
 from keraunos import console
@@ -8,7 +7,11 @@ from keraunos import constants
 from keraunos.keep_alive import keep_alive
 
 
-class KeraunosClient(discord.Client):
+EXTLIST: list = [
+]
+
+
+class KeraunosClient(commands.Bot):
     def run(self) -> None:
         console.dbprint("Initializing Keraunos...")
         super().run(getenv("TOKEN"))
@@ -18,12 +21,7 @@ class KeraunosClient(discord.Client):
         console.bot_state(self)
 
 
-client: KeraunosClient = KeraunosClient()
-bot: commands.Bot = commands.Bot("kn.")
-
-
-EXTLIST: list = [
-]
+bot: commands.Bot = KeraunosClient("kn.")
 
 
 @bot.command()
@@ -41,4 +39,4 @@ async def reload(ctx):
 
 
 keep_alive()
-client.run()
+bot.run()
