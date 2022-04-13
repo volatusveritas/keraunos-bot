@@ -3,6 +3,7 @@ from os import getenv
 import discord
 
 from keraunos import console
+from keraunos.keep_alive import keep_alive
 
 
 class KeraunosClient(discord.Client):
@@ -16,4 +17,5 @@ class KeraunosClient(discord.Client):
 
 
 keraunos_bot: KeraunosClient = KeraunosClient()
+keep_alive()
 keraunos_bot.run()
