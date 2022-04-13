@@ -7,8 +7,7 @@ from keraunos import constants
 from keraunos.keep_alive import keep_alive
 
 
-EXTLIST: list = [
-]
+ext_list: list = list(constants.EXTENSIONS)
 
 
 class Keraunos(commands.Bot):
@@ -24,18 +23,33 @@ class Keraunos(commands.Bot):
 bot: Keraunos = Keraunos(command_prefix="kn.")
 
 
-@bot.command()
-async def reload(ctx):
-    if (ctx.author.id != constants.ENGINEER_ID):
+async def engineer_check(ctx):
+    if ctx.author.id != constants.ENGINEER_ID:
         await ctx.channel.send(
-            "Não és o engenheiro. Somente ele pode usar este comando."
+            "Não és o Engenheiro. Somente ele pode usar este comando."
         )
+        return False
+
+    return True
+
+
+@bot.command()
+async def e_reload(ctx):
+    if not await engineer_check(ctx):
         return
 
     await ctx.channel.send("Keraunos está sendo reiniciado.")
 
-    for ext in EXTLIST:
+    for ext in ext_list:
         bot.reload_extension(ext)
+
+
+@bot.command()
+async def e_listext(ctx):
+    if not await engineer_check(ctx):
+        return
+
+    await ctx.channel.send(f"Lista de extensões: {', '.join(ext_list)}")
 
 
 keep_alive()
