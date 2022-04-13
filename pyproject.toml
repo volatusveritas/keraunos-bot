@@ -3,11 +3,11 @@
 line-length = 79
 target-version = ["py38"]
 [tool.poetry]
-name = "python-package-manager"
-description = ""
-version = "1.1.13"
 authors = ["Volatus <veritasvolatus@gmail.com>"]
+description = ""
+name = "python-package-manager"
+version = "1.1.13"
 [tool.poetry.dependencies]
-python = ">=3.8.0"
-flask = "2.1.1"
 "discord.py" = "1.7.3"
+flask = "2.1.1"
+python = "^3.8"
