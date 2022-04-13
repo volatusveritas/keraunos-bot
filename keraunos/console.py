@@ -5,7 +5,7 @@ def dbprint(message: str) -> None:
     print(f"[Debug] {message}")
 
 
-def dbdeftable(rows: dict[str, str], tabsize:int=4) -> None:
+def dbdeftable(rows: dict, tabsize:int=4) -> None:
     keylen = 0
 
     for key in rows.keys():
