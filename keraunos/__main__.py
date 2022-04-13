@@ -11,7 +11,7 @@ EXTLIST: list = [
 ]
 
 
-class KeraunosClient(commands.Bot):
+class Keraunos(commands.Bot):
     def run(self) -> None:
         console.dbprint("Initializing Keraunos...")
         super().run(getenv("TOKEN"))
@@ -21,7 +21,7 @@ class KeraunosClient(commands.Bot):
         console.bot_state(self)
 
 
-bot: commands.Bot = KeraunosClient("kn.")
+bot: Keraunos = Keraunos(command_prefix="kn.")
 
 
 @bot.command()
