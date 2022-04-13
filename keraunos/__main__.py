@@ -19,7 +19,7 @@ class KeraunosClient(discord.Client):
 
 
 client: KeraunosClient = KeraunosClient()
-bot: commands.Bot = commands.Bot(["keraunos", "krns", "kn."])
+bot: commands.Bot = commands.Bot("kn.")
 
 
 EXTLIST: list = [
