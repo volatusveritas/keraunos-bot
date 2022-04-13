@@ -1,8 +1,10 @@
 from os import getenv
 
 import discord
+from discord.ext import commands
 
 from keraunos import console
+from keraunos import constants
 from keraunos.keep_alive import keep_alive
 
 
@@ -16,6 +18,27 @@ class KeraunosClient(discord.Client):
         console.bot_state(self)
 
 
-keraunos_bot: KeraunosClient = KeraunosClient()
+client: KeraunosClient = KeraunosClient()
+bot: commands.Bot = commands.Bot(["keraunos", "krns", "kn."])
+
+
+EXTLIST: list = [
+]
+
+
+@bot.command()
+async def reload(ctx):
+    if (ctx.author.id != constants.ENGINEER_ID):
+        await ctx.channel.send(
+            "Não és o engenheiro. Somente ele pode usar este comando."
+        )
+        return
+
+    await ctx.channel.send("Keraunos está sendo reiniciado.")
+
+    for ext in EXTLIST:
+        bot.reload_extension(ext)
+
+
 keep_alive()
-keraunos_bot.run()
+client.run()
