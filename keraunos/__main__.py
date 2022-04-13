@@ -20,7 +20,12 @@ class Keraunos(commands.Bot):
         console.bot_state(self)
 
 
-bot: Keraunos = Keraunos(command_prefix="kn.")
+bot: Keraunos = Keraunos(command_prefix=(
+    "{",
+    "kn.",
+    "krns "
+    "keraunos ",
+))
 
 
 async def engineer_check(ctx):
@@ -34,22 +39,70 @@ async def engineer_check(ctx):
 
 
 @bot.command()
-async def e_reload(ctx):
+async def e_reload(ctx, *args):
     if not await engineer_check(ctx):
         return
 
-    await ctx.channel.send("Keraunos está sendo reiniciado.")
+    await ctx.channel.send(f"Tentando reiniciar: {', '.join(args)}")
+
+    for ext in args:
+        bot.reload_extension(ext)
+
+
+@bot.command()
+async def e_reloadall(ctx):
+    if not await engineer_check(ctx):
+        return
+
+    await ctx.channel.send("Reiniciando todas as extensões.")
 
     for ext in ext_list:
         bot.reload_extension(ext)
 
 
 @bot.command()
-async def e_listext(ctx):
+async def e_list(ctx):
     if not await engineer_check(ctx):
         return
 
-    await ctx.channel.send(f"Lista de extensões: {', '.join(ext_list)}")
+    if ext_list:
+        await ctx.channel.send(f"Lista de extensões: {', '.join(ext_list)}.")
+    else:
+        await ctx.channel.send("Não existem extensões ativadas.")
+
+
+@bot.command()
+async def e_add(ctx, *args):
+    if not await engineer_check(ctx):
+        return
+
+    await ctx.channel.send(f"Tentando adicionar: {', '.join(args)}")
+
+    for ext in args:
+        ext_list.remove(ext)
+
+
+@bot.command()
+async def e_remove(ctx, *args):
+    if not await engineer_check(ctx):
+        return
+
+    await ctx.channel.send(f"Tentando remover: {', '.join(args)}")
+
+    for ext in args:
+        ext_list.append(ext)
+
+
+@bot.command()
+async def e_reset(ctx):
+    global ext_list
+
+    await ctx.channel.send("Redefinindo a lista de extensões.")
+
+    if not await engineer_check(ctx):
+        return
+
+    ext_list = list(constants.EXTENSIONS)
 
 
 keep_alive()
