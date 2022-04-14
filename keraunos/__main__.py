@@ -45,16 +45,16 @@ async def e_reload(ctx, *args) -> None:
         return
 
     if not args:
-        await ctx.channel.send("Uso: `e_reload all | {extensão}`")
+        await ctx.channel.send("Uso: `e_reload (all | {<extensão>})`")
         return
 
     exts_to_reload = []
 
     if args[0] != "all":
-        await ctx.channel.send(f"Tentando reiniciar: {', '.join(args)}.")
+        await ctx.channel.send(f"Reiniciando extensões: {', '.join(args)}.")
         exts_to_reload = args
     else:
-        await ctx.channel.send("Tentando reiniciar todas as extensões.")
+        await ctx.channel.send("Reiniciando todas as extensões.")
         exts_to_reload = bot.extensions.keys()
 
     for ext in exts_to_reload:
@@ -85,10 +85,10 @@ async def e_load(ctx, *args) -> None:
         return
 
     if not args:
-        await ctx.channel.send("Uso: `load {extensão}`.")
+        await ctx.channel.send("Uso: `load {<extensão>}`.")
         return
 
-    await ctx.channel.send(f"Tentando adicionar: {', '.join(args)}")
+    await ctx.channel.send(f"Carregando extensões: {', '.join(args)}")
 
     for ext in args:
         try:
@@ -105,10 +105,10 @@ async def e_unload(ctx, *args) -> None:
         return
 
     if not args:
-        await ctx.channel.send("Uso: `unload {extensão}`.")
+        await ctx.channel.send("Uso: `unload {<extensão>}`.")
         return
 
-    await ctx.channel.send(f"Tentando remover: {', '.join(args)}")
+    await ctx.channel.send(f"Descarregando extensões: {', '.join(args)}")
 
     for ext in args:
         try:
