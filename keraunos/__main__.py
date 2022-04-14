@@ -45,12 +45,19 @@ async def e_reload(ctx, *args) -> None:
         return
 
     if not args:
-        await ctx.channel.send("Uso: `e_reload (all | {extensão})`")
+        await ctx.channel.send("Uso: `e_reload all | {extensão}`")
         return
 
-    await ctx.channel.send(f"Tentando reiniciar: {', '.join(args)}")
+    exts_to_reload = []
 
-    for ext in args if args[0] != "all" else bot.extensions.keys():
+    if args[0] != "all":
+        await ctx.channel.send(f"Tentando reiniciar: {', '.join(args)}.")
+        exts_to_reload = args
+    else:
+        await ctx.channel.send("Tentando reiniciar todas as extensões.")
+        exts_to_reload = bot.extensions.keys()
+
+    for ext in exts_to_reload:
         try:
             bot.reload_extension(ext)
         except commands.ExtensionNotFound:
