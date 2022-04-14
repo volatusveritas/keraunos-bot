@@ -33,7 +33,7 @@ async def fallacy_define(ctx):
     )
 
     embed = discord.Embed(
-        title="Definition of fallacy",
+        title="Definição de falácia",
         description=definition
     )
 
