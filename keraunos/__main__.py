@@ -7,9 +7,6 @@ from keraunos import constants
 from keraunos.keep_alive import keep_alive
 
 
-ext_list: list = list(constants.EXTENSIONS)
-
-
 class Keraunos(commands.Bot):
     def run(self) -> None:
         console.dbprint("Initializing Keraunos...")
@@ -19,16 +16,20 @@ class Keraunos(commands.Bot):
         console.dbprint("Keraunos is logged in, with bot state:")
         console.bot_state(self)
 
+    async def on_command_error(self, ctx, ex) -> None:
+        try:
+            raise ex
+        except commands.CommandNotFound:
+            ctx.channel.send("Comando não encontrado ou indisponível.")
+
 
 bot: Keraunos = Keraunos(command_prefix=(
     "{",
     "kn.",
-    "krns "
-    "keraunos ",
 ))
 
 
-async def engineer_check(ctx):
+async def engineer_check(ctx) -> bool:
     if ctx.author.id != constants.ENGINEER_ID:
         await ctx.channel.send(
             "Não és o Engenheiro. Somente ele pode usar este comando."
@@ -39,70 +40,68 @@ async def engineer_check(ctx):
 
 
 @bot.command()
-async def e_reload(ctx, *args):
+async def e_reload(ctx, *args) -> None:
     if not await engineer_check(ctx):
         return
 
     await ctx.channel.send(f"Tentando reiniciar: {', '.join(args)}")
 
-    for ext in args:
-        bot.reload_extension(ext)
+    if not args:
+        await ctx.channel.send("Uso: `e_reload (all | {extensão})`")
+        return
+
+    for ext in args if args[0] != "all" else bot.extensions.keys():
+        try:
+            bot.reload_extension(ext)
+        except commands.ExtensionNotFound:
+            await ctx.channel.send(f"Extensão '{ext}' não encontrada.")
+        except commands.ExtensionNotLoaded:
+            await ctx.channel.send(f"Extensão '{ext}' não carregada.")
 
 
 @bot.command()
-async def e_reloadall(ctx):
+async def e_list(ctx) -> None:
     if not await engineer_check(ctx):
         return
 
-    await ctx.channel.send("Reiniciando todas as extensões.")
-
-    for ext in ext_list:
-        bot.reload_extension(ext)
-
-
-@bot.command()
-async def e_list(ctx):
-    if not await engineer_check(ctx):
-        return
-
-    if ext_list:
-        await ctx.channel.send(f"Lista de extensões: {', '.join(ext_list)}.")
+    if bot.extensions:
+        await ctx.channel.send(
+            f"Lista de extensões: {', '.join(bot.extensions.keys())}."
+        )
     else:
-        await ctx.channel.send("Não existem extensões ativadas.")
+        await ctx.channel.send("Não existem extensões carregadas.")
 
 
 @bot.command()
-async def e_add(ctx, *args):
+async def e_add(ctx, *args) -> None:
     if not await engineer_check(ctx):
         return
 
     await ctx.channel.send(f"Tentando adicionar: {', '.join(args)}")
 
     for ext in args:
-        ext_list.remove(ext)
+        try:
+            bot.load_extension(ext)
+        except commands.ExtensionAlreadyLoaded:
+            ctx.channel.send(f"Extensão '{ext}' já carregada.")
+        except commands.ExtensionNotFound:
+            ctx.channel.send(f"Extensão '{ext}' não encontrada.")
 
 
 @bot.command()
-async def e_remove(ctx, *args):
+async def e_remove(ctx, *args) -> None:
     if not await engineer_check(ctx):
         return
 
     await ctx.channel.send(f"Tentando remover: {', '.join(args)}")
 
     for ext in args:
-        ext_list.append(ext)
-
-
-@bot.command()
-async def e_reset(ctx):
-    global ext_list
-
-    await ctx.channel.send("Redefinindo a lista de extensões.")
-
-    if not await engineer_check(ctx):
-        return
-
-    ext_list = list(constants.EXTENSIONS)
+        try:
+            bot.unload_extension(ext)
+        except commands.ExtensionNotFound:
+            ctx.channel.send(f"Extensão '{ext}' não encontrada.")
+        except commands.ExtensionNotLoaded:
+            ctx.channel.send(f"Extensão '{ext}' não carregada.")
 
 
 keep_alive()
