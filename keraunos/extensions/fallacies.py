@@ -118,4 +118,3 @@ async def fallacy_ad_trollum(ctx) -> None:
 
 def setup(bot: commands.Bot) -> None:
     bot.add_command(fallacy)
-    bot.add_command(fallacy_define)
