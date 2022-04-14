@@ -20,7 +20,7 @@ class Keraunos(commands.Bot):
         try:
             raise ex
         except commands.CommandNotFound:
-            ctx.channel.send("Comando não encontrado ou indisponível.")
+            await ctx.channel.send("Comando não encontrado ou indisponível.")
 
 
 bot: Keraunos = Keraunos(command_prefix=(
