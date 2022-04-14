@@ -77,7 +77,8 @@ async def e_list(ctx) -> None:
 
     if bot.extensions:
         await ctx.send(
-            f"Lista de extensões: {', '.join(bot.extensions.keys())}."
+            "Lista de extensões carregadas:"
+            f" {', '.join(bot.extensions.keys())}."
         )
     else:
         await ctx.send("Não existem extensões carregadas.")
