@@ -1,4 +1,3 @@
-import discord
 from discord.ext import commands
 
 from keraunos import utils
@@ -18,6 +17,7 @@ async def fallacy_list(ctx) -> None:
         "Apelo à falácia: `fallacy | fal | aff`\n"
         "Non sequitur: `sequitur | seq | ns`\n"
         "Ad hominem: `hominem | hom | ah`\n"
+        "Ad ignorantiam: `ignorantiam | ign | ai`\n"
     )
 
     await utils.send_embed(ctx, "Lista de falácias disponíveis", list)
@@ -86,6 +86,20 @@ async def fallacy_ad_hominem(ctx) -> None:
     )
 
     await utils.send_embed(ctx, "Ad hominem", definition)
+
+
+@fallacy.group(name="ignorantiam", aliases=("ign", "ai"))
+async def fallacy_ad_ignorantiam(ctx) -> None:
+    definition = (
+        "**Argumentum ad ignorantiam** (em português: argumento da ignorância,"
+        " também referida como apelo à ignorância) designa uma falácia lógica"
+        " que tenta provar que algo é falso ou verdadeiro a partir de uma"
+        " ignorância anterior sobre o assunto. É um tipo de falso dilema, já"
+        " que assume que todas as premissas são verdadeiras ou que todas as"
+        " premissas serão falsas."
+    )
+
+    await utils.send_embed(ctx, "Ad ignorantiam", definition)
 
 
 def setup(bot: commands.Bot) -> None:
