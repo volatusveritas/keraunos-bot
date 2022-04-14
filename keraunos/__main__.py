@@ -44,11 +44,11 @@ async def e_reload(ctx, *args) -> None:
     if not await engineer_check(ctx):
         return
 
-    await ctx.channel.send(f"Tentando reiniciar: {', '.join(args)}")
-
     if not args:
         await ctx.channel.send("Uso: `e_reload (all | {extensão})`")
         return
+
+    await ctx.channel.send(f"Tentando reiniciar: {', '.join(args)}")
 
     for ext in args if args[0] != "all" else bot.extensions.keys():
         try:
@@ -73,9 +73,12 @@ async def e_list(ctx) -> None:
 
 
 @bot.command()
-async def e_add(ctx, *args) -> None:
+async def e_load(ctx, *args) -> None:
     if not await engineer_check(ctx):
         return
+
+    if not args:
+        await ctx.channel.send("Uso: `load {extensão}`.")
 
     await ctx.channel.send(f"Tentando adicionar: {', '.join(args)}")
 
@@ -89,9 +92,12 @@ async def e_add(ctx, *args) -> None:
 
 
 @bot.command()
-async def e_remove(ctx, *args) -> None:
+async def e_unload(ctx, *args) -> None:
     if not await engineer_check(ctx):
         return
+
+    if not args:
+        await ctx.channel.send("Uso: `unload {extensão}`.")
 
     await ctx.channel.send(f"Tentando remover: {', '.join(args)}")
 
