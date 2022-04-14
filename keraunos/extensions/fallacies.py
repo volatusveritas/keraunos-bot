@@ -1,3 +1,4 @@
+import discord
 from discord.ext import commands
 
 
@@ -20,7 +21,7 @@ async def fallacy_list(ctx):
 
 @fallacy.group(name="define", aliases=("def", "d"))
 async def fallacy_define(ctx):
-    await ctx.send(
+    definition = (
         "O termo **falácia** deriva do verbo latino *fallere*, que significa"
         " enganar. Designa-se por falácia um raciocínio errado com aparência"
         " de verdadeiro. Na lógica e na retórica, uma falácia é um argumento"
@@ -31,10 +32,17 @@ async def fallacy_define(ctx):
         " por causa disso."
     )
 
+    embed = discord.Embed(
+        title="Definition of fallacy",
+        description=definition
+    )
+
+    await ctx.send(embed=embed)
+
 
 @fallacy.group(name="probability", aliases=("prob", "atp"))
 async def fallacy_appeal_to_probability(ctx):
-    await ctx.send(
+    definition = (
         "Um **apelo à probabilidade** (ou **apelo à possibilidade**, também"
         " conhecido como *possibiliter ergo probabiliter*, \"possivelmente,"
         " portanto provavelmente\") é a falácia lógica de tomar algo como"
@@ -47,6 +55,13 @@ async def fallacy_appeal_to_probability(ctx):
         " suficiente para qualificar como saber que aconteceu ou"
         " acontecerá.\""
     )
+
+    embed = discord.Embed(
+        title="Apelo à probabilidade",
+        description=definition
+    )
+
+    await ctx.send(embed=embed)
 
 
 def setup(bot: commands.Bot) -> None:
