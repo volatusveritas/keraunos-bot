@@ -18,6 +18,7 @@ async def fallacy_list(ctx) -> None:
         "Non sequitur: `sequitur | seq | ns`\n"
         "Ad hominem: `hominem | hom | ah`\n"
         "Ad ignorantiam: `ignorantiam | ign | ai`\n"
+        "Ad trollum: `trollum | troll | tr`\n"
     )
 
     await utils.send_embed(ctx, "Lista de falácias disponíveis", list)
@@ -100,6 +101,19 @@ async def fallacy_ad_ignorantiam(ctx) -> None:
     )
 
     await utils.send_embed(ctx, "Ad ignorantiam", definition)
+
+
+@fallacy.group(name="trollum", aliases=("troll", "tr"))
+async def fallacy_ad_trollum(ctx) -> None:
+    definition = (
+        "**Argumentum ad trollum** (latim, \"argumento do troll\"): designa"
+        " uma falácia retórica na qual um discursista inicia um debate ou"
+        " emite uma opinião propositalmente errada ou calculadamente contrária"
+        " com o único intuito de trazer outro discursista para uma armadilha"
+        " de humor"
+    )
+    
+    await utils.send_embed(ctx, "Ad trollum", definition)
 
 
 def setup(bot: commands.Bot) -> None:
