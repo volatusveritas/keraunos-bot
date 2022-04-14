@@ -59,7 +59,7 @@ async def e_reload(ctx, *args) -> None:
             return
 
         await ctx.send("Recarregando todas as extensões.")
-        exts_to_reload = bot.extensions.keys()
+        exts_to_reload = list(bot.extensions.keys())
 
     for ext in exts_to_reload:
         try:
