@@ -55,15 +55,16 @@ async def e_reload(ctx, *args) -> None:
         exts_to_reload = args
     else:
         if not bot.extensions.keys():
-            await ctx.send("Nenhuma extensão a ser carregada.")
+            await ctx.send("Nenhuma extensão a ser recarregada.")
             return
 
-        await ctx.send("Reiniciando todas as extensões.")
+        await ctx.send("Recarregando todas as extensões.")
         exts_to_reload = bot.extensions.keys()
 
     for ext in exts_to_reload:
         try:
             bot.reload_extension(ext)
+            await ctx.send(f"Extensão recarregada: {ext}")
         except commands.ExtensionNotFound:
             await ctx.send(f"Extensão '{ext}' não encontrada.")
         except commands.ExtensionNotLoaded:
@@ -98,6 +99,7 @@ async def e_load(ctx, *args) -> None:
     for ext in args:
         try:
             bot.load_extension(ext)
+            await ctx.send(f"Extensão carregada: {ext}.")
         except commands.ExtensionAlreadyLoaded:
             await ctx.send(f"Extensão '{ext}' já carregada.")
         except commands.ExtensionNotFound:
@@ -118,6 +120,7 @@ async def e_unload(ctx, *args) -> None:
     for ext in args:
         try:
             bot.unload_extension(ext)
+            await ctx.send(f"Extensão descarregada: {ext}.")
         except commands.ExtensionNotFound:
             await ctx.send(f"Extensão '{ext}' não encontrada.")
         except commands.ExtensionNotLoaded:
