@@ -60,7 +60,7 @@ async def e_reload(ctx, *args) -> None:
 
     for ext in exts_to_reload:
         try:
-            bot.reload_extension(ext)
+            bot.reload_extension(f"keraunos.extensions.{ext}")
             await ctx.send(f"Extensão recarregada: {ext}")
         except commands.ExtensionNotFound:
             await ctx.send(f"Extensão '{ext}' não encontrada.")
@@ -95,7 +95,7 @@ async def e_load(ctx, *args) -> None:
 
     for ext in args:
         try:
-            bot.load_extension(ext)
+            bot.load_extension(f"keraunos.extensions.{ext}")
             await ctx.send(f"Extensão carregada: {ext}.")
         except commands.ExtensionAlreadyLoaded:
             await ctx.send(f"Extensão '{ext}' já carregada.")
@@ -116,7 +116,7 @@ async def e_unload(ctx, *args) -> None:
 
     for ext in args:
         try:
-            bot.unload_extension(ext)
+            bot.unload_extension(f"keraunos.extensions.{ext}")
             await ctx.send(f"Extensão descarregada: {ext}.")
         except commands.ExtensionNotFound:
             await ctx.send(f"Extensão '{ext}' não encontrada.")
