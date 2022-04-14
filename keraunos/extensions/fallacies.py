@@ -46,13 +46,7 @@ async def fallacy_appeal_to_probability(ctx) -> None:
         " conhecido como *possibiliter ergo probabiliter*, \"possivelmente,"
         " portanto provavelmente\") é a falácia lógica de tomar algo como"
         " certo porque provavelmente seria o caso (ou talvez poderia ser o"
-        " caso). Argumentos indutivos carecem de validade dedutiva e devem,"
-        " portanto, ser afirmados ou negados nas premissas. Uma mera"
-        " possibilidade não se correlaciona com uma probabilidade, e uma mera"
-        " probabilidade não se correlaciona com uma certeza, nem é apenas"
-        " qualquer probabilidade de que algo aconteceu ou acontecerá"
-        " suficiente para qualificar como saber que aconteceu ou"
-        " acontecerá.\""
+        " caso)."
     )
 
     await utils.send_embed(ctx, "Apelo à probabilidade", definition)
