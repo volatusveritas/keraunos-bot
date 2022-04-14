@@ -79,6 +79,7 @@ async def e_load(ctx, *args) -> None:
 
     if not args:
         await ctx.channel.send("Uso: `load {extensão}`.")
+        return
 
     await ctx.channel.send(f"Tentando adicionar: {', '.join(args)}")
 
@@ -98,6 +99,7 @@ async def e_unload(ctx, *args) -> None:
 
     if not args:
         await ctx.channel.send("Uso: `unload {extensão}`.")
+        return
 
     await ctx.channel.send(f"Tentando remover: {', '.join(args)}")
 
