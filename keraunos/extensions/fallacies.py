@@ -33,8 +33,9 @@ async def fallacy_appeal_to_probability(ctx):
         "portanto, ser afirmados ou negados nas premissas. Uma mera"
         "possibilidade não se correlaciona com uma probabilidade, e uma mera"
         "probabilidade não se correlaciona com uma certeza, nem é apenas"
-        "qualquer probabilidade de que algo aconteceu ou acontecerá suficiente"
-        "para qualificar como saber que aconteceu ou acontecerá.\""
+        "qualquer probabilidade de que algo aconteceu ou acontecerá"
+        "suficiente para qualificar como saber que aconteceu ou"
+        "acontecerá.\""
     )
 
 
