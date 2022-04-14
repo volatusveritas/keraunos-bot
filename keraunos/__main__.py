@@ -54,6 +54,10 @@ async def e_reload(ctx, *args) -> None:
         await ctx.channel.send(f"Reiniciando extensões: {', '.join(args)}.")
         exts_to_reload = args
     else:
+        if not bot.extensions.keys():
+            await ctx.channel.send("Nenhuma extensão a ser carregada.")
+            return
+
         await ctx.channel.send("Reiniciando todas as extensões.")
         exts_to_reload = bot.extensions.keys()
 
