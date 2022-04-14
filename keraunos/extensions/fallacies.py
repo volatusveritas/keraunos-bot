@@ -8,6 +8,16 @@ async def fallacy(ctx):
     await ctx.send("Subcomando inválido.")
 
 
+@fallacy.group(name="list", aliases=("ls", "l"))
+async def fallacy_list(ctx):
+    message = (
+        "Lista de falácias disponíveis:\n"
+        "- Apelo à probabilidade: `probability | prob | atp`\n"
+    )
+
+    await ctx.send(message)
+
+
 @fallacy.group(name="define", aliases=("def", "d"))
 async def fallacy_define(ctx):
     await ctx.send(
