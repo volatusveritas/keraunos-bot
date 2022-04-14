@@ -23,10 +23,7 @@ class Keraunos(commands.Bot):
             await ctx.send("Comando não encontrado ou indisponível.")
 
 
-bot: Keraunos = Keraunos(command_prefix=(
-    "{",
-    "kn.",
-))
+bot: Keraunos = Keraunos(command_prefix=("keraunos.", "kn.", "{",))
 
 
 async def engineer_check(ctx) -> bool:
