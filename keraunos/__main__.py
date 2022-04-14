@@ -87,9 +87,9 @@ async def e_load(ctx, *args) -> None:
         try:
             bot.load_extension(ext)
         except commands.ExtensionAlreadyLoaded:
-            ctx.channel.send(f"Extensão '{ext}' já carregada.")
+            await ctx.channel.send(f"Extensão '{ext}' já carregada.")
         except commands.ExtensionNotFound:
-            ctx.channel.send(f"Extensão '{ext}' não encontrada.")
+            await ctx.channel.send(f"Extensão '{ext}' não encontrada.")
 
 
 @bot.command()
@@ -107,9 +107,9 @@ async def e_unload(ctx, *args) -> None:
         try:
             bot.unload_extension(ext)
         except commands.ExtensionNotFound:
-            ctx.channel.send(f"Extensão '{ext}' não encontrada.")
+            await ctx.channel.send(f"Extensão '{ext}' não encontrada.")
         except commands.ExtensionNotLoaded:
-            ctx.channel.send(f"Extensão '{ext}' não carregada.")
+            await ctx.channel.send(f"Extensão '{ext}' não carregada.")
 
 
 keep_alive()
