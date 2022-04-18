@@ -21,5 +21,5 @@ async def funny_meyer(ctx):
 
 
 def setup(bot):
-    bot.add_comnad(funny)
+    bot.add_command(funny)
     print("Extension Loaded: Funny")
