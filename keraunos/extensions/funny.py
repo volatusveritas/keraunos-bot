@@ -1,12 +1,12 @@
 from discord.ext import commands
 
 
-@commands.group()
+@commands.group(aliases=("fun", "fn"), invoke_without_command=True)
 async def funny(ctx):
     await ctx.send("Subcomando inválido.")
 
 
-@funny.group()
+@funny.group(name="meyer")
 async def funny_meyer(ctx):
     await ctx.send(
         "Olá! Chamo-me Carlos Ernesto de Boaventura Meyer, sou seminarista,"
