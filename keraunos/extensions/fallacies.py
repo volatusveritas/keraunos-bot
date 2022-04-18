@@ -114,5 +114,6 @@ async def fallacy_ad_trollum(ctx):
     await utils.send_embed(ctx, "Ad trollum", definition)
 
 
-def setup(bot: commands.Bot):
+def setup(bot):
     bot.add_command(fallacy)
+    print("Extension Loaded: Fallacies")

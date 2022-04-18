@@ -18,3 +18,8 @@ async def funny_meyer(ctx):
         "Para aqueles que estiverem lendo a respeito de minha pessoa, Deus vos"
         " abençoe! AD MAJOREM DEI GLORIAM!"
     )
+
+
+def setup(bot):
+    bot.add_comnad(funny)
+    print("Extension Loaded: Funny")
