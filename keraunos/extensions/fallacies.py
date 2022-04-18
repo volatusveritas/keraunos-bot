@@ -6,7 +6,7 @@ from keraunos import utils
 @commands.group(
     name="fallacy", aliases=("fal", "f"), invoke_without_command=True
 )
-async def fallacy(ctx) -> None:
+async def fallacy(ctx):
     await ctx.send("Subcomando inválido.")
 
 
@@ -25,7 +25,7 @@ async def fallacy_list(ctx) -> None:
 
 
 @fallacy.group(name="define", aliases=("def", "d"))
-async def fallacy_define(ctx) -> None:
+async def fallacy_define(ctx):
     definition = (
         "O termo **falácia** deriva do verbo latino *fallere*, que significa"
         " enganar. Designa-se por falácia um raciocínio errado com aparência"
@@ -41,7 +41,7 @@ async def fallacy_define(ctx) -> None:
 
 
 @fallacy.group(name="probability", aliases=("prob", "atp"))
-async def fallacy_appeal_to_probability(ctx) -> None:
+async def fallacy_appeal_to_probability(ctx):
     definition = (
         "Um **apelo à probabilidade** (ou **apelo à possibilidade**, também"
         " conhecido como *possibiliter ergo probabiliter*, \"possivelmente,"
@@ -54,7 +54,7 @@ async def fallacy_appeal_to_probability(ctx) -> None:
 
 
 @fallacy.group(name="fallacy", aliases=("fal", "aff"))
-async def fallacy_argument_from_fallacy(ctx) -> None:
+async def fallacy_argument_from_fallacy(ctx):
     definition = (
         "**Apelo à falácia** é a falácia formal de analisar um argumento e"
         " inferir que, já que este contém uma falácia, sua conclusão deve ser"
@@ -66,7 +66,7 @@ async def fallacy_argument_from_fallacy(ctx) -> None:
 
 
 @fallacy.group(name="sequitur", aliases=("seq", "ns"))
-async def fallacy_non_sequitur(ctx) -> None:
+async def fallacy_non_sequitur(ctx):
     definition = (
         "**Non sequitur** é uma expressão do latim (traduzida para o português"
         " como \"não se segue que\") que designa a falácia lógica na qual a"
@@ -79,7 +79,7 @@ async def fallacy_non_sequitur(ctx) -> None:
 
 
 @fallacy.group(name="hominem", aliases=("hom", "ah"))
-async def fallacy_ad_hominem(ctx) -> None:
+async def fallacy_ad_hominem(ctx):
     definition = (
         "**Argumentum ad hominem** (latim, \"argumento contra a pessoa\") é"
         " uma falácia informal identificada quando alguém procura negar uma"
@@ -90,7 +90,7 @@ async def fallacy_ad_hominem(ctx) -> None:
 
 
 @fallacy.group(name="ignorantiam", aliases=("ign", "ai"))
-async def fallacy_ad_ignorantiam(ctx) -> None:
+async def fallacy_ad_ignorantiam(ctx):
     definition = (
         "**Argumentum ad ignorantiam** (em português: argumento da ignorância,"
         " também referida como apelo à ignorância) designa uma falácia lógica"
@@ -104,7 +104,7 @@ async def fallacy_ad_ignorantiam(ctx) -> None:
 
 
 @fallacy.group(name="trollum", aliases=("troll", "tr"))
-async def fallacy_ad_trollum(ctx) -> None:
+async def fallacy_ad_trollum(ctx):
     definition = (
         "**Argumentum ad trollum** (latim, \"argumento do troll\") designa"
         " uma falácia retórica na qual um discursista inicia um debate ou"
@@ -116,5 +116,5 @@ async def fallacy_ad_trollum(ctx) -> None:
     await utils.send_embed(ctx, "Ad trollum", definition)
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: commands.Bot):
     bot.add_command(fallacy)
