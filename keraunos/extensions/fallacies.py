@@ -3,9 +3,7 @@ from discord.ext import commands
 from keraunos import utils
 
 
-@commands.group(
-    name="fallacy", aliases=("fal", "f"), invoke_without_command=True
-)
+@commands.group(aliases=("fal", "f"), invoke_without_command=True)
 async def fallacy(ctx):
     await ctx.send("Subcomando inválido.")
 
