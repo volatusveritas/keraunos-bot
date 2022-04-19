@@ -2,19 +2,13 @@ from os import getenv
 
 from discord.ext import commands
 
-from keraunos import console
 from keraunos import constants
 from keraunos.keep_alive import keep_alive
 
 
 class Keraunos(commands.Bot):
     def run(self) -> None:
-        console.dbprint("Initializing Keraunos...")
         super().run(getenv("TOKEN"))
-
-    async def on_ready(self) -> None:
-        console.dbprint("Keraunos is logged in, with bot state:")
-        console.bot_state(self)
 
     async def on_command_error(self, ctx, ex) -> None:
         try:
