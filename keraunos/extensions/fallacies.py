@@ -1,6 +1,7 @@
 from discord.ext import commands
 
 from keraunos import utils
+from keraunos.log import logger
 
 
 @commands.group(aliases=("fal", "f"), invoke_without_command=True)
@@ -116,4 +117,8 @@ async def fallacy_ad_trollum(ctx):
 
 def setup(bot):
     bot.add_command(fallacy)
-    print("Extension Loaded: Fallacies")
+    logger.info("Extension loaded: fallacies")
+
+
+def teardown(bot):
+    logger.info("Extension unloaded: fallacies")
