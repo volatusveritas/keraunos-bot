@@ -1,10 +1,14 @@
 import logging
+import os
 
 
 logger = logging.getLogger("keraunos")
 
 
 def setup():
+    if not os.path.exists("log"):
+        os.mkdir("log")
+
     formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
 
     console_handler = logging.StreamHandler()
