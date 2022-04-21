@@ -1,31 +1,34 @@
 from discord.ext import commands
 
-from keraunos.log import logger
+from keraunos import log
+from keraunos import utils
 
 
-@commands.group(aliases=("fun", "fn"), invoke_without_command=True)
-async def funny(ctx):
-    await ctx.send("Subcomando inválido.")
+class Funny(commands.Cog):
+    @commands.group(aliases=("fun", "fn"), invoke_without_command=True)
+    async def funny(self, ctx):
+        await ctx.send("Subcomando inválido.")
 
 
-@funny.group(name="meyer")
-async def funny_meyer(ctx):
-    await ctx.send(
-        "Olá! Chamo-me Carlos Ernesto de Boaventura Meyer, sou seminarista,"
-        " estudante de filosofia, teologia e linguística. Futuro Padre, estudo"
-        " também história, falante nativo de Português, vivo na Região"
-        " Sul-Fluminense, onde atuo na Administração Apostólica São João Maria"
-        " Vianney. Estudo Italiano, Latim e Francês - se Deus quiser - Grego e"
-        " Hunsriqueano Rio-Grandense. Aristotélico, distributivista e tomista."
-        "Para aqueles que estiverem lendo a respeito de minha pessoa, Deus vos"
-        " abençoe! AD MAJOREM DEI GLORIAM!"
-    )
+    @funny.group(name="meyer")
+    async def funny_meyer(self, ctx):
+        await utils.send_embed(ctx, "Carlos Ernesto de Boaventura Meyer",
+            "Olá! Chamo-me Carlos Ernesto de Boaventura Meyer, sou seminarista,"
+            " estudante de filosofia, teologia e linguística. Futuro Padre, estudo"
+            " também história, falante nativo de Português, vivo na Região"
+            " Sul-Fluminense, onde atuo na Administração Apostólica São João Maria"
+            " Vianney. Estudo Italiano, Latim e Francês - se Deus quiser - Grego e"
+            " Hunsriqueano Rio-Grandense. Aristotélico, distributivista e tomista."
+            "Para aqueles que estiverem lendo a respeito de minha pessoa, Deus vos"
+            " abençoe! AD MAJOREM DEI GLORIAM!"
+        )
 
 
 def setup(bot):
-    bot.add_command(funny)
-    logger.info("Extension loaded: funny")
+    bot.add_cog(Funny())
+    log.extension_loaded("funny")
 
 
 def teardown(bot):
-    logger.info("Extension unloaded: funny")
+    bot.remove_cog("Funny")
+    log.extension_unloaded("funny")

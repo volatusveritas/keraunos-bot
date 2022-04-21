@@ -3,8 +3,11 @@ import discord
 from keraunos import constants
 
 
-async def send_embed(ctx, title: str, message: str) -> None:
+async def send_embed(ctx, title, message, colorname="neutral"):
     embed = discord.Embed(
-        title=title, description=message, color=constants.KERAUNOS_COLOR
+        title=title,
+        description=message,
+        color=constants.COLORS[colorname],
     )
+
     await ctx.send(embed=embed)
