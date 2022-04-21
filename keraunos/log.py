@@ -5,10 +5,11 @@ import os
 logger = logging.getLogger("keraunos")
 
 
-def setup():
+def setup_logging():
     if not os.path.exists("log"):
         os.mkdir("log")
 
+    # Keraunos Bot
     formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
 
     console_handler = logging.StreamHandler()
@@ -27,3 +28,15 @@ def setup():
     logger.addHandler(console_handler)
     logger.addHandler(debug_file_handler)
     logger.addHandler(info_file_handler)
+
+
+def extension_loaded(name):
+    logger.info(f"Extension loaded: {name}")
+
+
+def extension_unloaded(name):
+    logger.info(f"Extension unloaded: {name}")
+
+
+def extension_reloaded(name):
+    logger.info(f"Extension reloaded: {name}")
