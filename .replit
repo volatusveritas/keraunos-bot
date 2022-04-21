@@ -1,0 +1,5 @@
+language = "python3"
+run = "python -OO -m keraunos"
+
+[packager]
+language = "python3"
