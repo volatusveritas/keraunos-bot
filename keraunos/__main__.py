@@ -15,8 +15,14 @@ class Keraunos(commands.Bot):
     def run(self) -> None:
         super().run(getenv("TOKEN"))
 
+    async def on_connect(self) -> None:
+        logger.info("Bot connected")
+
     async def on_ready(self) -> None:
-        logger.info("Bot successfully connected")
+        logger.info("Bot ready to receive commands")
+
+    async def on_disconnect(self) -> None:
+        logger.info("Bot disconnected")
 
     async def on_command_error(self, ctx, ex) -> None:
         try:
