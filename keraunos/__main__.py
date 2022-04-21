@@ -4,11 +4,19 @@ from discord.ext import commands
 
 from keraunos import constants
 from keraunos.keep_alive import keep_alive
+from keraunos.log import logger
+import keraunos.log
+
+
+keraunos.log.setup()
 
 
 class Keraunos(commands.Bot):
     def run(self) -> None:
         super().run(getenv("TOKEN"))
+
+    async def on_ready(self) -> None:
+        logger.info("Bot successfully connected")
 
     async def on_command_error(self, ctx, ex) -> None:
         try:

@@ -1,5 +1,7 @@
 from discord.ext import commands
 
+from keraunos.log import logger
+
 
 @commands.group(aliases=("fun", "fn"), invoke_without_command=True)
 async def funny(ctx):
@@ -22,4 +24,8 @@ async def funny_meyer(ctx):
 
 def setup(bot):
     bot.add_command(funny)
-    print("Extension Loaded: Funny")
+    logger.info("Extension loaded: funny")
+
+
+def teardown(bot):
+    logger.info("Extension unloaded: funny")
