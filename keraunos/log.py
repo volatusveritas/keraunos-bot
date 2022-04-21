@@ -5,10 +5,11 @@ import os
 logger = logging.getLogger("keraunos")
 
 
-def setup_logger():
+def setup_logging():
     if not os.path.exists("log"):
         os.mkdir("log")
 
+    # Keraunos Bot
     formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
 
     console_handler = logging.StreamHandler()
