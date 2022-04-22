@@ -12,7 +12,7 @@ class Funny(commands.Cog):
 
     @funny.group(name="meyer")
     async def funny_meyer(self, ctx):
-        await utils.send_embed(ctx, "Carlos Ernesto de Boaventura Meyer",
+        meyer_message = (
             "Olá! Chamo-me Carlos Ernesto de Boaventura Meyer, sou seminarista,"
             " estudante de filosofia, teologia e linguística. Futuro Padre, estudo"
             " também história, falante nativo de Português, vivo na Região"
@@ -21,6 +21,10 @@ class Funny(commands.Cog):
             " Hunsriqueano Rio-Grandense. Aristotélico, distributivista e tomista."
             "Para aqueles que estiverem lendo a respeito de minha pessoa, Deus vos"
             " abençoe! AD MAJOREM DEI GLORIAM!"
+        )
+
+        await utils.send_embed(
+            ctx, meyer_message, "Carlos Ernesto de Boaventura Meyer"
         )
 
 

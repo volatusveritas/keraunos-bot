@@ -21,7 +21,7 @@ class Fallacies(commands.Cog):
             "Ad trollum: `trollum | troll | tr`\n"
         )
 
-        await utils.send_embed(ctx, "Lista de falácias disponíveis", list)
+        await utils.send_embed(ctx, list, "Lista de falácias disponíveis")
 
 
     @fallacy.group(name="define", aliases=("def", "d"))
@@ -37,7 +37,7 @@ class Fallacies(commands.Cog):
             " por causa disso."
         )
 
-        await utils.send_embed(ctx, "Definição de falácia", definition)
+        await utils.send_embed(ctx, definition, "Definição de falácia")
 
 
     @fallacy.group(name="probability", aliases=("prob", "atp"))
@@ -50,7 +50,7 @@ class Fallacies(commands.Cog):
             " caso)."
         )
 
-        await utils.send_embed(ctx, "Apelo à probabilidade", definition)
+        await utils.send_embed(ctx, definition, "Apelo à probabilidade")
 
 
     @fallacy.group(name="fallacy", aliases=("fal", "aff"))
@@ -62,7 +62,7 @@ class Fallacies(commands.Cog):
             " logicam***), **falácia da falácia**, e **falácia das más razões**."
         )
 
-        await utils.send_embed(ctx, "Apelo à falácia", definition)
+        await utils.send_embed(ctx, definition, "Apelo à falácia")
 
 
     @fallacy.group(name="sequitur", aliases=("seq", "ns"))
@@ -75,7 +75,7 @@ class Fallacies(commands.Cog):
             " porque há falta de conexão entre a premissa inicial e a conclusão."
         )
 
-        await utils.send_embed(ctx, "Non sequitur", definition)
+        await utils.send_embed(ctx, definition, "Non sequitur")
 
 
     @fallacy.group(name="hominem", aliases=("hom", "ah"))
@@ -86,7 +86,7 @@ class Fallacies(commands.Cog):
             " proposição com uma crítica ao seu autor e não ao seu conteúdo."
         )
 
-        await utils.send_embed(ctx, "Ad hominem", definition)
+        await utils.send_embed(ctx, definition, "Ad hominem")
 
 
     @fallacy.group(name="ignorantiam", aliases=("ign", "ai"))
@@ -100,7 +100,7 @@ class Fallacies(commands.Cog):
             " premissas serão falsas."
         )
 
-        await utils.send_embed(ctx, "Ad ignorantiam", definition)
+        await utils.send_embed(ctx, definition, "Ad ignorantiam")
 
 
     @fallacy.group(name="trollum", aliases=("troll", "tr"))
@@ -113,7 +113,7 @@ class Fallacies(commands.Cog):
             " de humor"
         )
 
-        await utils.send_embed(ctx, "Ad trollum", definition)
+        await utils.send_embed(ctx, definition, "Ad trollum")
 
 
 def setup(bot):
