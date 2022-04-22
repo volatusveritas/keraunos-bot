@@ -3,7 +3,7 @@ import discord
 from keraunos import constants
 
 
-async def send_embed(ctx, title, message, colorname="neutral"):
+async def send_embed(ctx, message, title="", colorname="neutral"):
     embed = discord.Embed(
         title=title,
         description=message,
@@ -14,4 +14,4 @@ async def send_embed(ctx, title, message, colorname="neutral"):
 
 
 async def send_error(ctx, message):
-    await send_embed(ctx, "Erro", message, "critical")
+    await send_embed(ctx, message, colorname="critical")
