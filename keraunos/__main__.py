@@ -1,8 +1,9 @@
 from os import getenv
-from configparser import ConfigParser
+import configparser
 
 from discord.ext import commands
 
+from keraunos import utils
 from keraunos.keep_alive import keep_alive
 from keraunos.log import logger, setup_logging
 
@@ -16,8 +17,8 @@ class Keraunos(commands.Bot):
         super().run(getenv("TOKEN"))
 
     def config_init(self):
-        self.config = ConfigParser()
-        self.config.read("keraunos.conf")
+        self.config = configparser.ConfigParser()
+        self.config.read_file(open("keraunos.conf"))
 
         for ext in self.config["keraunos.init"]["extensions"].split(","):
             self.load_extension(f"keraunos.extensions.{ext}")
@@ -32,10 +33,12 @@ class Keraunos(commands.Bot):
         logger.info("Bot disconnected")
 
     async def on_command_error(self, ctx, ex):
-        try:
+        if isinstance(ex, commands.CommandNotFound):
+            await utils.send_error(
+                ctx, "Comando não encontrado ou indisponível."
+            )
+        else:
             raise ex
-        except commands.CommandNotFound:
-            await ctx.send("Comando não encontrado ou indisponível.")
 
 
 bot = Keraunos(("keraunos.", "krns.", "kn.", "{",))
