@@ -23,7 +23,7 @@ class Engineer(commands.Cog):
 
     @commands.command()
     async def e_list(self, ctx):
-        if not self.check_permission(ctx):
+        if not await self.check_permission(ctx):
             return
 
         message = ""
@@ -35,7 +35,7 @@ class Engineer(commands.Cog):
 
     @commands.command()
     async def e_load(self, ctx, *extensions):
-        if not self.check_permission(ctx):
+        if not await self.check_permission(ctx):
             return
 
         message = ""
@@ -53,7 +53,7 @@ class Engineer(commands.Cog):
 
     @commands.command()
     async def e_unload(self, ctx, *extensions):
-        if not self.check_permission(ctx):
+        if not await self.check_permission(ctx):
             return
 
         message = ""
@@ -71,7 +71,7 @@ class Engineer(commands.Cog):
 
     @commands.command()
     async def e_reload(self, ctx, *extensions):
-        if not self.check_permission(ctx):
+        if not await self.check_permission(ctx):
             return
 
         message = ""
