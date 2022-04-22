@@ -7,7 +7,7 @@ from keraunos import log
 class Fallacies(commands.Cog):
     @commands.group(aliases=("fal", "f"), invoke_without_command=True)
     async def fallacy(self, ctx):
-        await ctx.send("Subcomando inválido.")
+        await utils.send_error(ctx, "Subcomando inválido.")
 
 
     @fallacy.group(name="list", aliases=("ls", "l"))

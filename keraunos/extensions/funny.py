@@ -7,7 +7,7 @@ from keraunos import utils
 class Funny(commands.Cog):
     @commands.group(aliases=("fun", "fn"), invoke_without_command=True)
     async def funny(self, ctx):
-        await ctx.send("Subcomando inválido.")
+        await utils.send_error(ctx, "Subcomando inválido.")
 
 
     @funny.group(name="meyer")
